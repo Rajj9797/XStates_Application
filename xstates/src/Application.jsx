@@ -1,4 +1,4 @@
-import React, { use, useEffect , useState } from "react";
+import React, { useEffect , useState } from "react";
 import axios from "axios";
 import styles from "./Application.module.css";
 export default function Application() {
@@ -14,8 +14,7 @@ export default function Application() {
 
     useEffect(() => {
         const countries = async () => {
-            const res = await axios.get(`https://crio-location-selector.onrender.com/countries`);
-            setCountry(res.data);
+            await axios.get(`https://crio-location-selector.onrender.com/countries`).then((res) => setCountry(res.data)).catch((err) => console.log(err));
         }
         countries();
     }, []);
@@ -23,8 +22,7 @@ export default function Application() {
     useEffect(() => {
         if (selectedCountry) {
             const states = async () => {
-                const res = await axios.get(`https://crio-location-selector.onrender.com/country=${selectedCountry}/states`)
-                setState(res.data);
+                await axios.get(`https://crio-location-selector.onrender.com/country=${selectedCountry}/states`).then((res) => setState(res.data)).catch((err) => console.log(err));
             }
             states();
         }
@@ -33,8 +31,7 @@ export default function Application() {
     useEffect(() => {
         if(selectedCountry && selectedState){
             const cities = async () => {
-                const res = await axios.get(`https://crio-location-selector.onrender.com/country=${selectedCountry}/state=${selectedState}/cities`)
-                setCity(res.data);
+                await axios.get(`https://crio-location-selector.onrender.com/country=${selectedCountry}/state=${selectedState}/cities`).then((res) => setCity(res.data)).catch((err) => console.log(err));
             }
             cities();
         }   
