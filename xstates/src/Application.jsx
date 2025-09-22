@@ -81,7 +81,7 @@ export default function Application() {
         <div>
             {selectedCountry && selectedState && selectedCity && (
                 <h2 className={styles.selected}>
-                    You have selected {selectedCity}, {selectedState}, {selectedCountry}
+                    You selected {selectedCity}, {selectedState}, {selectedCountry}
                 </h2>
             )}
         </div>
